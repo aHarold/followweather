@@ -1,0 +1,2 @@
+# followweather
+just a exercise 
