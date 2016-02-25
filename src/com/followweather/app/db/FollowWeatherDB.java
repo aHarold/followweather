@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.followweather.app.model.City;
-import com.followweather.app.model.Country;
+import com.followweather.app.model.County;
 import com.followweather.app.model.Province;
 
 import android.content.ContentValues;
@@ -91,27 +91,27 @@ public class FollowWeatherDB {
 	/*
 	 *将Country对象存储到数据库中 
 	 */
-	public void saveCountry(Country country) {
-		if (country != null) {
+	public void saveCounty(County county) {
+		if (county != null) {
 			ContentValues values = new ContentValues();
-			values.put("country_name", country.getCountryName());
-			values.put("country_code", country.getCountryCode());
-			values.put("city_id", country.getCityId());
+			values.put("country_name", county.getCountyName());
+			values.put("country_code", county.getCountyCode());
+			values.put("city_id", county.getCityId());
 			db.insert("country", null, values);
 		}
 	}
 	/*
 	 *从数据库中读取某城市下的县信息 
 	 */
-	public List<Country> loadCountries(int cityId) {
-		List<Country> list = new ArrayList<Country>();
+	public List<County> loadCounties(int cityId) {
+		List<County> list = new ArrayList<County>();
 		Cursor cursor = db.query("Country", null, "city_id = ?", new String[] { String.valueOf(cityId) }, null, null, null);
 		if (cursor != null) {
 			do {
-				Country country = new Country();
+				County country = new County();
 				country.setId(cursor.getInt(cursor.getColumnIndex("id")));
-				country.setCountryName(cursor.getString(cursor.getColumnIndex("contry_name")));
-				country.setCountryCode(cursor.getString(cursor.getColumnIndex("country_code")));
+				country.setCountyName(cursor.getString(cursor.getColumnIndex("contry_name")));
+				country.setCountyCode(cursor.getString(cursor.getColumnIndex("country_code")));
 				country.setCityId(cityId);
 				list.add(country);
 			} while (cursor.moveToNext());
