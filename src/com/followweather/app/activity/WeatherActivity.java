@@ -74,6 +74,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 			Intent intent = new Intent(this, ChooseAreaActivity.class);
 			intent.putExtra("from_weather_activity", true);
 			startActivity(intent);
+			finish();
 			break;
 		case R.id.refresh_weather:
 			publishText.setText("Í¬²½ÖÐ...");
